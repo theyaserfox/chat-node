@@ -10,7 +10,7 @@ server.on("connection", function (socket) {
   socket.emit("server_on");
 
   socket.on("talk", function (username, d) {
-    console.log(username + ": " + d);
+    console.log("User " + username + " sent the message '" + d + "' to server");
     router.emit("talk", username, d);
   });
 

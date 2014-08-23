@@ -16,8 +16,10 @@
     "url": "https://github.com/samehkamaleldin/socket-demo/issues"
   },
   "homepage": "https://github.com/samehkamaleldin/socket-demo",
-  "dependencies":
-  { "socket.io-client":"1.0.6",
-    "socket.io":"1.0.6"
+  "dependencies": {
+    "jetty": "^0.2.1",
+    "readline-sync": "^0.4.7",
+    "socket.io": "1.0.6",
+    "socket.io-client": "1.0.6"
   }
 }
