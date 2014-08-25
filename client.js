@@ -10,14 +10,19 @@ var jetty = new Jetty(process.stdout);
 jetty.clear();
 
 username = readlineSync.question("Enter a username : ");
+client.emit("join", username);
 
 client.on("server_on", function () {
   jetty.moveTo([0,0]);
-  console.log("Now you can start chatting ..\n");
+  console.log("Now you can start chatting ..\nYou can chat with specific user by typing your message in '[username]message_text' format");
   var stdin = process.openStdin();
   stdin.on('data', function (chunk) {
     chunk = chunk.slice(0, chunk.length - 1);
-    client.emit("talk", username, chunk);
+    chunk = chunk + "";
+    var toUsername = chunk.replace(/.*\[|\].*/gi,'');
+    if(toUsername == chunk) toUsername = "";
+    else chunk = chunk.replace("["+toUsername+"]", "");
+    client.emit("talk", username, toUsername, chunk);
   });
 
   client.on("toUsersTalk", function (sUsername, d) {
